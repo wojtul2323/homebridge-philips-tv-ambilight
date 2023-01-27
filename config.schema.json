@@ -1,15 +1,28 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
-  "pluginType": "platform",
-  "singular": true,
+  "pluginAlias": "PhilipsTVAmbilight",
+  "pluginType": "accessory",
   "schema": {
     "type": "object",
     "properties": {
       "name": {
         "title": "Name",
         "type": "string",
-        "required": true,
-        "default": "Example Dynamic Platform"
+        "default": "TV Ambilight",
+        "required": true
+      },
+      "ip": {
+        "title": "IP Address",
+        "type": "string",
+        "format": "ipv4",
+        "placeholder": "127.0.0.1",
+        "required": true
+      },
+      "macAddress": {
+        "title": "MAC Address",
+        "type": "string",
+        "pattern": "^([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}$",
+        "placeholder": "01:23:45:AB:CD:EF",
+        "required": true
       }
     }
   }
