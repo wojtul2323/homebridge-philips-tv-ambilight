@@ -70,7 +70,7 @@ class PhilipsTVAmbilightAccessoryX implements AccessoryPlugin {
             if (response) {
                 if (response.statusCode === 200) {
                     this.log.debug('fetchBrightness: ' + body);
-                    this.brightness = JSON.parse(body).color.brightness;
+                    this.brightness = Math.round(JSON.parse(body).color.brightness / 2.55);
                     callback(null, this.brightness);
                     return;
                 }
@@ -80,83 +80,56 @@ class PhilipsTVAmbilightAccessoryX implements AccessoryPlugin {
     }
 
     setBrightness(value: CharacteristicValue, callback: CharacteristicSetCallback) {
-        this.log.debug('setBrightness: ' + value);
+        this.log.debug('setBrightness value: ' + value);
         this.brightness = Number(value);
         const request_body = {
             'color': {
-                'hue': this.hue,
-                'saturation': this.saturation,
-                'brightness': value,
-            },
-            'colordelta':{
-                'hue': 0,
-                'saturation': 0,
-                'brightness': 0,
+                'hue': Math.round(this.hue * (255 / 360)),
+                'saturation': Math.round(this.saturation * 2.55),
+                'brightness': Math.round(this.brightness * 2.55),
             },
         };
         request(this.buildRequest('lounge', 'POST', JSON.stringify(request_body)), function (this, error, response) {
             if (response) {
-                this.log.debug('setBrightness: ' + response.statusCode);
-                if (response.statusCode === 200) {
-                    callback(null, value);
-                    return;
-                }
+                this.log.debug('setBrightness, statusCode: ' + response.statusCode);
             }
-            callback(null, 0);
+            callback(null);
         }.bind(this));
     }
 
     setSaturation(value: CharacteristicValue, callback: CharacteristicSetCallback) {
-        this.log.debug('setSaturation: ' + value);
+        this.log.debug('setSaturation value: ' + value);
         this.saturation = Number(value);
         const request_body = {
             'color': {
-                'hue': this.hue,
-                'saturation': Number(value),
-                'brightness': this.brightness,
-            },
-            'colordelta':{
-                'hue': 0,
-                'saturation': 0,
-                'brightness': 0,
+                'hue': Math.round(this.hue * (255 / 360)),
+                'saturation': Math.round(this.saturation * 2.55),
+                'brightness': Math.round(this.brightness * 2.55),
             },
         };
         request(this.buildRequest('lounge', 'POST', JSON.stringify(request_body)), function (this, error, response) {
             if (response) {
                 this.log.debug('setSaturation, statusCode: ' + response.statusCode);
-                if (response.statusCode === 200) {
-                    callback(null);
-                    return;
-                }
             }
-            callback(null, 0);
+            callback(null);
         }.bind(this));
     }
 
     setHue(value: CharacteristicValue, callback: CharacteristicSetCallback) {
-        this.log.debug('setHue: ' + value);
+        this.log.debug('setHue value: ' + value);
         this.hue = Number(value);
         const request_body = {
             'color': {
-                'hue': value,
-                'saturation': this.saturation,
-                'brightness': this.brightness,
-            },
-            'colordelta':{
-                'hue': 0,
-                'saturation': 0,
-                'brightness': 0,
+                'hue': Math.round(this.hue * (255 / 360)),
+                'saturation': Math.round(this.saturation * 2.55),
+                'brightness': Math.round(this.brightness * 2.55),
             },
         };
         request(this.buildRequest('lounge', 'POST', JSON.stringify(request_body)), function (this, error, response) {
             if (response) {
                 this.log.debug('setHue, statusCode: ' + response.statusCode);
-                if (response.statusCode === 200) {
-                    callback(null, value);
-                    return;
-                }
             }
-            callback(null, 0);
+            callback(null);
         }.bind(this));
     }
 
@@ -165,7 +138,7 @@ class PhilipsTVAmbilightAccessoryX implements AccessoryPlugin {
             if (response) {
                 if (response.statusCode === 200) {
                     this.log.debug('fetchSaturation: ' + body);
-                    this.saturation = JSON.parse(body).color.saturation;
+                    this.saturation = Math.round(JSON.parse(body).color.saturation / 2.55);
                     callback(null, this.saturation);
                     return;
                 }
@@ -179,7 +152,7 @@ class PhilipsTVAmbilightAccessoryX implements AccessoryPlugin {
             if (response) {
                 if (response.statusCode === 200) {
                     this.log.debug('fetchHue: ' + body);
-                    this.hue = JSON.parse(body).color.hue;
+                    this.hue = Math.round(JSON.parse(body).color.hue / (255 / 360));
                     callback(null, this.hue);
                     return;
                 }
@@ -235,12 +208,12 @@ class PhilipsTVAmbilightAccessoryX implements AccessoryPlugin {
         request(this.buildRequest('power', 'POST', JSON.stringify(request_body)), function (this, error, response) {
             if (response) {
                 if (response.statusCode === 200) {
-                    callback(null, value);
+                    callback(null);
                 }
             } else {
                 this.log.debug('Device ' + this.config.name + ' is offline. ' + error);
                 this.wakeOnLan();
-                callback(null, false);
+                callback(null);
             }
         }.bind(this));
         return this;
