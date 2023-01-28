@@ -2,7 +2,7 @@
 
 This plug-in provides support for Homebridge Philips TV Ambilight. It is a fork of [Konrad Knitter](https://github.com/konradknitter)'s [Homebridge Philips TV Ambilight](https://github.com/konradknitter/homebridge-philips-tv-ambilight) with a few enhancements, including:
 
-- The configuration had to be added manually because the `config.schema.json` was incorrect
+- The configuration no longer has to be manually added/edited because `config.schema.json` is now correct.
 
 The decision to fork instead of submit a pull request was because the original project had a few issues and it had not been updated in over 2 years at the time or this fork, despite [a pull request](https://github.com/konradknitter/homebridge-philips-tv-ambilight/pull/6) from [TheVosh](https://github.com/TheVosh) being present for most of that time. Since pull requests were being ignored, I decided to create and publish this fork so that the fixes would be available directly from the homebridge UI.
 
