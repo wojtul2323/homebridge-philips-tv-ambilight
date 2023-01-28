@@ -17,11 +17,11 @@ let hap: HAP;
 
 export = (api: API) => {
     hap = api.hap;
-    api.registerAccessory('PhilipsTVAmbilight', PhilipsTVAmbilightAccessory);
+    api.registerAccessory('PhilipsTVAmbilightX', PhilipsTVAmbilightAccessoryX);
 };
 
 
-class PhilipsTVAmbilightAccessory implements AccessoryPlugin {
+class PhilipsTVAmbilightAccessoryX implements AccessoryPlugin {
     private readonly log: Logging;
     private readonly name: string;
     private readonly config: AccessoryConfig;

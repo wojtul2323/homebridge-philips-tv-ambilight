@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "PhilipsTVAmbilight",
+  "pluginAlias": "PhilipsTVAmbilightX",
   "pluginType": "accessory",
   "schema": {
     "type": "object",

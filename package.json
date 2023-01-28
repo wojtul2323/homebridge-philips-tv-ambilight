@@ -1,15 +1,15 @@
 {
-    "displayName": "Homebridge Philips TV Ambilight",
-    "name": "homebridge-philips-tv-ambilight",
-    "version": "0.1.0",
-    "description": "A short description about what your plugin does.",
+    "displayName": "Homebridge Philips TV Ambilight X",
+    "name": "homebridge-philips-tv-ambilight-x",
+    "version": "0.2.0",
+    "description": "An updated version of Konrad Knitter's Ambilight Control Plug-in for Homebridge",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
-        "url": "git@github.com:konradknitter/homebridge-philips-tv-ambilight.git"
+        "url": "https://github.com/Grezzo/homebridge-philips-tv-ambilight-x.git"
     },
     "bugs": {
-        "url": "https://github.com/konradknitter/homebridge-philips-tv-ambilight/issues"
+        "url": "https://github.com/Grezzo/homebridge-philips-tv-ambilight-x/issues"
     },
     "engines": {
         "node": ">=10.17.0",
