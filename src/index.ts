@@ -200,15 +200,15 @@ class PhilipsTVAmbilightAccessoryX implements AccessoryPlugin {
 
     handleOnSet(value: CharacteristicValue, callback: CharacteristicSetCallback) {
         let request_body = {};
-        if (value) {
-            request_body = {'power': 'On'};
-        } else {
-            const request_body_default = {
+        let request_body_default = {
                 "styleName": "FOLLOW_VIDEO", 
                 "isExpert": false, 
                 "menuSetting": "NATURAL", 
                 "stringValue": "Natural"
-            };
+        };
+        if (value) {
+            request_body = {'power': 'On'};
+        } else {
             request(this.buildRequest('currentconfiguration', 'POST', JSON.stringify(request_body_default)), function (this, error, response) {
                 if (response) {
                     this.log.debug('setFollowVideo, statusCode: ' + response.statusCode);
