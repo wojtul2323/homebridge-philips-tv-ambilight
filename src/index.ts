@@ -213,7 +213,6 @@ class PhilipsTVAmbilightAccessoryX implements AccessoryPlugin {
                 if (response) {
                     this.log.debug('setFollowVideo, statusCode: ' + response.statusCode);
                 }
-                callback(null);
             }.bind(this));
             
             request_body = {'power': 'Off'};
